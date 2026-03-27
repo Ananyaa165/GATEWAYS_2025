@@ -31,7 +31,7 @@ def map_state_name(state):
 df = load_data()
 
 # Title
-st.title("🎉 GATEWAYS-2025 National Level Fest Dashboard")
+st.title("GATEWAYS-2025 National Level Fest Dashboard")
 st.markdown("---")
 
 # Sidebar for navigation
@@ -122,7 +122,7 @@ elif page == "Participation Analysis":
         st.plotly_chart(fig, use_container_width=True)
     
     # Event-wise analysis
-    st.subheader("📊 Event-wise Participation")
+    st.subheader("Event-wise Participation")
     event_counts = df['Event Name'].value_counts().reset_index()
     event_counts.columns = ['Event', 'Participants']
     fig = px.bar(event_counts, x='Event', y='Participants', 
@@ -140,7 +140,7 @@ elif page == "Participation Analysis":
         st.plotly_chart(fig_pie, use_container_width=True)
     
     # College-wise analysis
-    st.subheader("🏫 College-wise Participation")
+    st.subheader("College-wise Participation")
     college_counts = df['College'].value_counts().reset_index()
     college_counts.columns = ['College', 'Participants']
     
@@ -159,7 +159,7 @@ elif page == "Participation Analysis":
     st.dataframe(college_counts.head(15), use_container_width=True)
     
     # Amount Paid analysis
-    st.subheader("💰 Revenue Analysis")
+    st.subheader("Revenue Analysis")
     total_revenue = df['Amount Paid'].sum()
     st.metric("Total Revenue", f"₹{total_revenue}")
     
@@ -171,7 +171,7 @@ elif page == "Participation Analysis":
     st.plotly_chart(fig, use_container_width=True)
 
 elif page == "Feedback Analysis":
-    st.header("💬 Feedback Analysis")
+    st.header("Feedback Analysis")
     
     # Rating statistics
     col1, col2, col3, col4 = st.columns(4)
@@ -187,7 +187,7 @@ elif page == "Feedback Analysis":
     st.markdown("---")
     
     # Ratings distribution
-    st.subheader("⭐ Ratings Distribution")
+    st.subheader("Ratings Distribution")
     rating_counts = df['Rating'].value_counts().sort_index()
     col1, col2 = st.columns(2)
     with col1:
@@ -204,7 +204,7 @@ elif page == "Feedback Analysis":
         st.plotly_chart(fig, use_container_width=True)
     
     # Average rating by event
-    st.subheader("📊 Average Rating by Event")
+    st.subheader("Average Rating by Event")
     avg_rating_event = df.groupby('Event Name')['Rating'].mean().reset_index().sort_values('Rating', ascending=False)
     fig = px.bar(avg_rating_event, x='Event Name', y='Rating', 
                  title="Average Rating per Event (Higher is Better)",
@@ -214,7 +214,7 @@ elif page == "Feedback Analysis":
     st.plotly_chart(fig, use_container_width=True)
     
     # Feedback text analysis
-    st.subheader("💭 Feedback Text Analysis")
+    st.subheader(" Feedback Text Analysis")
     
     # Combine all feedback
     all_feedback = ' '.join(df['Feedback on Fest'].dropna())
@@ -254,8 +254,8 @@ elif page == "Feedback Analysis":
             st.pyplot(fig)
     
     # Feedback by rating
-    st.subheader("😊 Participant Feedback by Rating")
-    rating_tabs = st.tabs([f"⭐ {i}-Star" for i in range(5, 0, -1)])
+    st.subheader("Participant Feedback by Rating")
+    rating_tabs = st.tabs([f"{i}-Star" for i in range(5, 0, -1)])
     for idx, rating in enumerate(range(5, 0, -1)):
         with rating_tabs[idx]:
             feedback_data = df[df['Rating'] == rating][['Student Name', 'College', 'Event Name', 'Feedback on Fest']]
@@ -266,14 +266,14 @@ elif page == "Feedback Analysis":
                 st.info(f"No {rating}-star feedback")
     
     # Show all feedback
-    st.subheader("📋 All Feedback Data")
+    st.subheader(" All Feedback Data")
     st.dataframe(df[['Student Name', 'College', 'Event Name', 'Feedback on Fest', 'Rating']],
                 use_container_width=True)
 
 # Footer
 st.markdown("---")
 st.markdown("""
-### 🎯 Key Insights Summary
+### Key Insights Summary
 - **Participation**: Analyze participation trends across states, colleges, and events
 - **Ratings**: Understand participant satisfaction through ratings and feedback
 - **Feedback**: Extract actionable insights from participant feedback
